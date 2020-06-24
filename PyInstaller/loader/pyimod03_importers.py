@@ -490,6 +490,8 @@ class FrozenImporter(object):
             # Set __path__ to point to 'sys.prefix/package/subpackage'.
             module.__path__ = [pyi_os_path.os_path_dirname(module.__file__)]
 
+        import warnings
+        warnings.filterwarnings("ignore", "(?s).*MATPLOTLIBDATA.*", category=UserWarning)
         exec(bytecode, module.__dict__)
 
 
